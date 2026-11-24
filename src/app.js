@@ -1,0 +1,13 @@
+import express from 'express';
+import { fileURLToPath } from 'node:url';
+import { demo } from '../public/demo-data.js';
+const app = express();
+app.disable('x-powered-by');
+app.use((_req, res, next) => { res.setHeader('X-Content-Type-Options', 'nosniff'); res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin'); next(); });
+app.get('/api/health', (_req, res) => res.json({status:'ok', application:'Frutería Super SEGA', stage:1, database:'not-connected'}));
+app.get('/api/catalogo', (_req, res) => { res.setHeader('Cache-Control','no-store'); res.json(demo); });
+app.use('/api', (_req, res) => res.status(404).json({message:'Ruta no disponible en esta etapa de vista previa.'}));
+app.use(express.static(fileURLToPath(new URL('../public/', import.meta.url))));
+app.use((_req,res) => res.status(404).type('html').send('<html lang="es"><meta charset="utf-8"><title>No encontrado · Super SEGA</title><h1>Esta página no existe</h1><a href="/">Volver al catálogo</a></html>'));
+app.use((_error, _req, res, _next) => res.status(500).json({message:'No se pudo completar la solicitud.'}));
+export default app;
