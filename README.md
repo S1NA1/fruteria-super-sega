@@ -8,6 +8,20 @@ La primera entrega permite revisar el diseño, navegar el catálogo, buscar, fil
 
 Servidor Node.js con Express 5, interfaz HTML/CSS/JavaScript. La API REST inicial sirve datos de demostración. **MySQL y la autenticación no están implementados todavía.** Se implementan en la etapa 2, antes de presentar el proyecto como terminado.
 
+## Enlaces y publicación
+
+- Catálogo: https://fruteria-super-sega.vercel.app/
+- Panel de demostración: https://fruteria-super-sega.vercel.app/admin/
+- Repositorio: https://github.com/S1NA1/fruteria-super-sega
+
+La publicación en Vercel es **manual**, por decisión del usuario. Subir un commit a GitHub no publica automáticamente la aplicación. No instalar la integración de GitHub/Vercel sin una nueva autorización. Para publicar una etapa terminada, desde este proyecto y con la cuenta autorizada de Vercel:
+
+```bash
+vercel deploy --prod
+```
+
+No versionar `.env.local` ni `.vercel/`. Esta vista previa no tiene credenciales MySQL.
+
 ## Ejecutar
 
 Node.js 24:
